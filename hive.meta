@@ -1,0 +1,56 @@
+Feature: Complete the hive application meta
+
+@StepDef
+Scenario: Iam in a homepage
+  Given I start a new browser
+  When I navigate to "https://qa-hive.powerwrap.com.au/users/sign_in"
+  Then the heading can be located by tag name "h3"
+
+@StepDef
+Scenario: I type email,password and click sign-in button
+  Given the email field can be located by id "user_email"
+  And the password field can be located by id "user_password"
+  And the sign-in button can be located by id "m_login_signin_submit"
+  When I type "parvatha.varthni@crystaldelta.com" in the email field
+  And I type "T$sthive1226" in the password field
+  And I click the sign-in button
+  Then I should land on the dashboard
+@StepDef
+Scenario: I should be on The Hive page
+  Given the product logo can be located by xpath "//*[@id="toggle-height"]/div[1]/div[2]/div[2]/img"
+  And the title can be located by xpath "/html/body/div[2]/div[1]/div/div/div/img"
+@StepDef
+Scenario: Iam on the dashboard
+  Given a new activity can be located by javascript "document.querySelector('#pv_raise_a_request > span')"
+@StepDef
+Scenario: I click a new activity
+  Given I click a new activity
+  And new account creation can be located by javascript "document.querySelector('#m_accordion_sd_item_0_head > span.m-accordion__item-title')"
+  And open a new account can be located by javascript "document.querySelector('#m_accordion_sd_item_0_body > div > div.col-md-12.comment-header > p > span')"
+  When I click new account creation
+  And I click open a new account
+@StepDef
+Scenario: a new ticket should be created
+  Given the praemium portfolio ID field can be located by xpath "//*[@id="customfield_10106"]"
+  And the subject field can be located by javascript "document.querySelector('#summary')"
+  And the submit button can be located by xpath "//*[@id="sd-form"]/div[2]/div[2]/button[2]"
+  And the account category field can be located by id "customfield_10600_hash_10501"
+  And the thankyou message can be located by id "sd-form-status"
+  When I type "test" in the praemium portfolio ID field
+  And I type "test" in the subject field
+  And I click the account category field
+  And I click the submit button
+  @StepDef
+    Scenario:after creating a ticket
+    Given the close button can be located by xpath "//*[@id="modify-close"]"
+    When I click the close button
+
+@StepDef
+  Scenario:I click a ticket from the activities
+  Given the activities can be located by xpath "//*[@id="horizontal-menu"]/ul/li[2]/a"
+  And the checkbox can be located by xpath "//*[@id="sd-requests"]/table/tbody/tr[1]/td[1]/span/label"
+  And the dropdown can be located by the xpath "//*[@id="change_ticket_status"]"
+  When I click the activities
+  And I click the checkbox
+  And I click "closed" in the dropdown
+  Then the ticket should be closed
