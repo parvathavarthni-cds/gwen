@@ -1,0 +1,26 @@
+Feature: outlook sign in meta
+
+@StepDef
+Scenario: Iam in outlook homepage
+    Given I start a new browser
+    When I navigate to "https://outlook.com/"
+    And heading can be located by tag name "h1"
+    And the sign_in button can be located by class name "office-signIn"
+    And I click the sign_in button
+    Then the page title should be "Sign in to your Microsoft account"
+
+
+@StepDef
+Scenario: I enter email and click next button
+    Given the email field can be located by name "loginfmt"
+    And the next button can be located by id "idSIButton9"
+    When I enter "parvatha.varthni@crystaldelta.com" in the email field
+    And I click the next button
+
+@StepDef
+Scenario: I enter password and click sign in button
+  Given the password field can be located by id "i0118"
+  And sign in button can be located by id "idSIButton9"
+  When I enter "delta@123" in the password field
+  And I click sign in button
+  Then I should land on the home page

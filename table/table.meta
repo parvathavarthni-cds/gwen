@@ -1,0 +1,10 @@
+Feature: TodoMVC tables meta
+
+@StepDef
+@DataTable(horizontal="Item")
+Scenario: I have the following active items
+    Given I launch the Todo app
+     When I add a "${data[1][Item]}" item
+      And I add a "${data[2][Item]}" item
+      And I add a "${data[3][Item]}" item
+     Then the "${data[Item]}" item should be active for each data record

@@ -1,0 +1,31 @@
+Feature: Google search meta
+Scenario: Initialise
+@StepDef
+Scenario: I have Google in my browser
+  Given I start a new browser
+   When I navigate to "http://www.google.com"
+   Then the page title should be "Google"
+
+@StepDef
+Scenario: I do a search for "<query>"
+  Given the search field can be located by name "q"
+   When I enter "$<query>" in the search field
+   Then the page title should contain "$<query>"
+
+@StepDef
+Scenario: the first result should open a office page
+  Given the first match can be located by css selector ".r > a"
+   When I click the first match
+   Then the current URL should contain "office"
+
+   @StepDef
+   Scenario: I am on the <page-name> page
+       Given I wait until the heading is displayed
+        Then I am on the $<page-name> page
+
+     @StepDef
+     Scenario: I should be on the start page
+         Given I am on the start page
+           And the heading can be located by tag name "h1"
+          Then the heading should be "Welcome to Office"
+           And the Sign in can be located by class name "personalization__button"

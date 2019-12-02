@@ -1,0 +1,23 @@
+Feature: Complete the hive page meta
+
+@StepDef
+Scenario:I should start a new browser
+  Given I start a new browser
+  When I navigate to "https://qa-hive.powerwrap.com.au/users/sign_in"
+@StepDef
+Scenario:Iam launching the hive application
+  Given the email field can be located by id "user_email"
+  And the password field can be located by id "user_password"
+  And the sign-in button can be located by id "m_login_signin_submit"
+  When I type "dineshv@crystaldelta.com" in the email field
+  And I type "L#tmein2916" in the password field
+  And I click the sign-in button
+@StepDef
+Scenario: I should be on the start page
+  Given the product logo can be located by xpath "//*[@id="toggle-height"]/div[1]/div[2]/div[2]/img"
+  And the title can be located by xpath "/html/body/div[2]/div[1]/div/div/div/img"
+@StepDef
+Scenario:Iam on the dashboard
+    Given a heading PWL1 Test can be located by tag name "h4"
+    And a new activity can be located by javascript "document.querySelector('#pv_raise_a_request > span')"
+    
